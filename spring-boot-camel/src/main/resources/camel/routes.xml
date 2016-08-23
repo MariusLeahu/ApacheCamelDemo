@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configure the Camel Routes -->
+<routes xmlns="http://camel.apache.org/schema/spring">
+	<route id="test-route">
+		<from uri="timer://myTimer?period={{timer.period}}&amp;delay=1000&amp;repeatCount=5" />
+		<process ref="sampleProc" />
+		<bean ref="myBean" method="saySomething" />
+		<to uri="log:timer?level=INFO&amp;showHeaders=true" />
+	</route>
+</routes>
